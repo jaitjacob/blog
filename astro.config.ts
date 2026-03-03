@@ -61,13 +61,21 @@ export default defineConfig({
     preserveScriptOrder: true,
     fonts: [
       {
-        name: "Google Sans Code",
-        cssVariable: "--font-google-sans-code",
+        name: "Inter",
+        cssVariable: "--font-inter",
         provider: fontProviders.google(),
         fallbacks: ["monospace"],
         weights: [300, 400, 500, 600, 700],
         styles: ["normal", "italic"],
       },
+      {
+        name: "Playfair Display",
+        cssVariable: "--font-playfair-display",
+        provider: fontProviders.google(),
+        fallbacks: ["monospace"],
+        weights: [700],
+        styles: ["italic"],
+      }
     ],
   },
 });
