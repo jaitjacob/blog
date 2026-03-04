@@ -43,8 +43,8 @@ html[data-theme="dark"] {
   h2,
   h3,
   h4,
-  th{
-    @apply font-appheading;
+  th {
+    @apply font-appheading font-bold italic;
   }
   body {
     @apply flex min-h-svh flex-col bg-background font-app text-foreground selection:bg-accent/75 selection:text-background;
