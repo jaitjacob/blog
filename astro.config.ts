@@ -69,12 +69,12 @@ export default defineConfig({
         styles: ["normal", "italic"],
       },
       {
-        name: "Playfair Display",
-        cssVariable: "--font-playfair-display",
+        name: "Libre Caslon Text",
+        cssVariable: "--font-libre-caslon-text",
         provider: fontProviders.google(),
         fallbacks: ["serif"],
-        weights: [400, 700],
-        styles: ["normal", "italic"],
+        weights: [400],
+        styles: ["normal"],
       }
     ],
   },

@@ -22,7 +22,7 @@ html[data-theme="dark"] {
 
 @theme inline {
   --font-app: var(--font-inter);
-  --font-appheading: var(--font-playfair-display);
+  --font-appheading: var(--font-libre-caslon-text);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
@@ -44,7 +44,7 @@ html[data-theme="dark"] {
   h3,
   h4,
   th {
-    @apply font-appheading font-bold italic;
+    @apply font-appheading font-normal;
   }
   body {
     @apply flex min-h-svh flex-col bg-background font-app text-foreground selection:bg-accent/75 selection:text-background;

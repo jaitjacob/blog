@@ -10,7 +10,7 @@
     h3,
     h4,
     th {
-      @apply mb-3 font-appheading font-bold italic text-foreground;
+      @apply mb-3 font-appheading font-normal text-foreground;
     }
 
     p,

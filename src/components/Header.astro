@@ -7,7 +7,6 @@ import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
-import Jait from "@/assets/jait.svg";
 
 const { pathname } = Astro.url;
 
@@ -45,10 +44,10 @@ const isActive = (path: string) => {
   >
     <a
       href="/"
-      class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none italic"
+      class="absolute py-1 text-xl leading-8 font-normal whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"
     >
-     <!-- <Jait/>-->
-      jx
+    📎
+     <!-- <Jait/> a logo component at some point. right now imma leave it empty-->
     </a>
     <nav
       id="nav-menu"
@@ -83,11 +82,7 @@ const isActive = (path: string) => {
             Tags
           </a>
         </li>
-        <li class="col-span-2">
-          <a href="/about" class:list={{ "active-nav": isActive("/about") }}>
-            About
-          </a>
-        </li>
+
         {
           SITE.showArchives && (
             <li class="col-span-2">

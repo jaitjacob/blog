@@ -44,7 +44,7 @@ Inside of AstroPaper, you'll see the following folders and files:
 /
 ├── public/
 │   ├── pagefind/ # auto-generated when build
-│   ├── favicon.svg
+│   ├── favicon.png
 │   └── astropaper-og.jpg
 ├── src/
 │   ├── assets/
@@ -92,9 +92,7 @@ Documentation can be read in two formats\_ _markdown_ & _blog post_.
 **Icons** - [Tablers](https://tabler-icons.io/)  
 **Code Formatting** - [Prettier](https://prettier.io/)  
 **Deployment** - [Cloudflare Pages](https://pages.cloudflare.com/)  
-**Illustration in About Page** - [https://freesvgillustration.com](https://freesvgillustration.com/)  
 **Linting** - [ESLint](https://eslint.org)
-
 ## 👨🏻‍💻 Running Locally
 
 You can start using this project locally by running the following command in your desired directory:
