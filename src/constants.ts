@@ -20,22 +20,21 @@ export const SOCIALS: Social[] = [
   {
     name: "GitHub",
     href: "https://github.com/jaitjacob",
-    linkTitle: `${SITE.title} on GitHub`,
+    linkTitle: `Where my code resides`,
     icon: IconGitHub,
   },
   {
     name: "X",
     href: "https://x.com/jxsnowcrash",
-    linkTitle: `${SITE.title} on X`,
+    linkTitle: `Find me on X`,
     icon: IconBrandX,
   },
   {
     name: "Mail",
     href: "mailto:jai8.jacob@gmail.com",
-    linkTitle: `Send an email to ${SITE.title}`,
+    linkTitle: `Send me an email`,
     icon: IconMail,
   },
 ] as const;
 
 export const SHARE_LINKS: Social[] = [] as const;
-
