@@ -10,7 +10,6 @@ dayjs.extend(timezone);
 
 type Props = {
   class?: string;
-  size?: "sm" | "lg";
   pubDatetime: string | Date;
   timezone?: string;
   modDatetime?: string | Date | null;
@@ -19,7 +18,6 @@ type Props = {
 const {
   pubDatetime,
   modDatetime,
-  size = "sm",
   class: className = "",
   timezone: postTimezone,
 } = Astro.props;

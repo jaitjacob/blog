@@ -3,10 +3,8 @@ import { render, type CollectionEntry } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Tag from "@/components/Tag.astro";
 import Datetime from "@/components/Datetime.astro";
 import EditPost from "@/components/EditPost.astro";
-import ShareLinks from "@/components/ShareLinks.astro";
 import BackButton from "@/components/BackButton.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
 import { getPath } from "@/utils/getPath";
@@ -31,7 +29,6 @@ const {
   pubDatetime,
   modDatetime,
   timezone,
-  tags,
   hideEditPost,
 } = post.data;
 
@@ -97,7 +94,7 @@ const nextPost =
       {title}
     </h1>
     <div class="my-6 flex items-center gap-2">
-      <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
+      <Datetime {pubDatetime} {modDatetime} {timezone} />
       <span
         aria-hidden="true"
         class:list={[
