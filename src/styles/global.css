@@ -15,7 +15,7 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   --background: #101010;
   --foreground: #eaedf3;
-  --accent: #23B0FF;
+  --accent: #23b0ff;
   --muted: #343f60;
   --border: #23b0ff80;
 }
@@ -75,4 +75,14 @@ html[data-theme="dark"] {
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
   scroll-margin-block: 1rem;
+}
+
+@layer base {
+  /* This removes the quotation marks from markdown blockquotes */
+  blockquote p:first-of-type::before {
+    content: none !important;
+  }
+  blockquote p:last-of-type::after {
+    content: none !important;
+  }
 }
