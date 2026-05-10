@@ -4,7 +4,7 @@ export const SITE = {
   profile: "https://www.jaitjacob.blog/",
   desc: "Deep dives into software engineering and computer science topics to help me master the basics.",
   title: "jaitjacob // blog",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "og.png",
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 4,
