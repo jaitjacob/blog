@@ -77,14 +77,19 @@ export default async () => {
                           {
                             type: "p",
                             props: {
-                              style: { fontSize: 72, fontWeight: "bold" },
+                              style: {
+                                fontSize: 72,
+                                fontWeight: 700,
+                                fontFamily: "Cormorant Garamond",
+                                fontStyle: "italic",
+                              },
                               children: SITE.title,
                             },
                           },
                           {
                             type: "p",
                             props: {
-                              style: { fontSize: 28 },
+                              style: { fontSize: 28, fontFamily: "Inter" },
                               children: SITE.desc,
                             },
                           },
@@ -100,6 +105,7 @@ export default async () => {
                           width: "100%",
                           marginBottom: "8px",
                           fontSize: 28,
+                          fontFamily: "Inter",
                         },
                         children: {
                           type: "span",

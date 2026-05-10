@@ -1,29 +1,43 @@
 async function loadGoogleFont(
   font: string,
   text: string,
-  weight: number
+  weight: number,
+  italic: boolean = false
 ): Promise<ArrayBuffer> {
-  const API = `https://fonts.googleapis.com/css2?family=${font}:wght@${weight}&text=${encodeURIComponent(text)}`;
+  const family = italic
+    ? `${font}:ital,wght@1,${weight}`
+    : `${font}:wght@${weight}`;
+  const API = `https://fonts.googleapis.com/css2?family=${family}&text=${encodeURIComponent(text)}`;
 
-  const css = await (
-    await fetch(API, {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1",
-      },
-    })
-  ).text();
+  const response = await fetch(API, {
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch font CSS from Google Fonts. Status: ${response.status} ${response.statusText}. URL: ${API}`
+    );
+  }
+
+  const css = await response.text();
 
   const resource = css.match(
     /src: url\((.+?)\) format\('(opentype|truetype)'\)/
   );
 
-  if (!resource) throw new Error("Failed to download dynamic font");
+  if (!resource) {
+    throw new Error(`Failed to extract font URL from CSS for font: ${font}`);
+  }
 
   const res = await fetch(resource[1]);
 
   if (!res.ok) {
-    throw new Error("Failed to download dynamic font. Status: " + res.status);
+    throw new Error(
+      `Failed to download font file from ${resource[1]}. Status: ${res.status}`
+    );
   }
 
   return res.arrayBuffer();
@@ -36,22 +50,24 @@ async function loadGoogleFonts(
 > {
   const fontsConfig = [
     {
-      name: "IBM Plex Mono",
-      font: "IBM+Plex+Mono",
-      weight: 400,
-      style: "normal",
+      name: "Cormorant Garamond",
+      font: "Cormorant+Garamond",
+      weight: 700,
+      style: "italic",
+      italic: true,
     },
     {
-      name: "IBM Plex Mono",
-      font: "IBM+Plex+Mono",
-      weight: 700,
-      style: "bold",
+      name: "Inter",
+      font: "Inter",
+      weight: 400,
+      style: "normal",
+      italic: false,
     },
   ];
 
   const fonts = await Promise.all(
-    fontsConfig.map(async ({ name, font, weight, style }) => {
-      const data = await loadGoogleFont(font, text, weight);
+    fontsConfig.map(async ({ name, font, weight, style, italic }) => {
+      const data = await loadGoogleFont(font, text, weight, italic);
       return { name, data, weight, style };
     })
   );
