@@ -2,7 +2,7 @@ export const SITE = {
   website: "https://www.jaitjacob.blog/", // deployed domain
   author: "jaitjacob",
   profile: "https://www.jaitjacob.blog/",
-  desc: "Deep dives into software engineering and computer science topics to help me master the basics.",
+  desc: "Deep dives into software engineering and computer science topics.",
   title: "jaitjacob // blog",
   ogImage: "og.png",
   lightAndDarkMode: true,
