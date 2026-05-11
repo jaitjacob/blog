@@ -55,15 +55,48 @@ const structuredData = {
 >
   <head>
     <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-4RTB14VMHT"></script>
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+      (function () {
+        const GA_ID = "G-4RTB14VMHT";
+        let loaded = false;
 
-      gtag("config", "G-4RTB14VMHT");
+        function loadGtag() {
+          if (loaded) return;
+          loaded = true;
+
+          // Remove interaction listeners
+          ["mouseover", "keydown", "touchmove", "touchstart", "scroll"].forEach(
+            event => {
+              window.removeEventListener(event, loadGtag);
+            }
+          );
+
+          // Create and append the script tag
+          const script = document.createElement("script");
+          script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+          script.async = true;
+          document.head.appendChild(script);
+
+          // Initialize dataLayer and gtag
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          window.gtag = gtag; // Export to window if needed
+          gtag("js", new Date());
+          gtag("config", GA_ID);
+        }
+
+        // Listen for common user interactions
+        ["mouseover", "keydown", "touchmove", "touchstart", "scroll"].forEach(
+          event => {
+            window.addEventListener(event, loadGtag, {
+              once: true,
+              passive: true,
+            });
+          }
+        );
+      })();
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
