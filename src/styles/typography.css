@@ -3,14 +3,14 @@
 @layer base {
   /* ===== Override default Tailwind Typography styles ===== */
   .app-prose {
-    @apply prose;
+    @apply prose font-app;
 
     h1,
     h2,
     h3,
     h4,
     th {
-      @apply mb-3 font-appheading italic font-bold text-foreground text-[42px] leading-tight;
+      @apply mb-3 font-appheading text-foreground text-[42px] leading-tight;
     }
 
     p,

@@ -1,76 +1,36 @@
-async function loadGoogleFont(
-  font: string,
-  text: string,
-  weight: number,
-  italic: boolean = false
-): Promise<ArrayBuffer> {
-  const family = italic
-    ? `${font}:ital,wght@1,${weight}`
-    : `${font}:wght@${weight}`;
-  const API = `https://fonts.googleapis.com/css2?family=${family}&text=${encodeURIComponent(text)}`;
+import fs from "node:fs";
+import path from "node:path";
 
-  const response = await fetch(API, {
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1",
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch font CSS from Google Fonts. Status: ${response.status} ${response.statusText}. URL: ${API}`
-    );
-  }
-
-  const css = await response.text();
-
-  const resource = css.match(
-    /src: url\((.+?)\) format\('(opentype|truetype)'\)/
+async function loadLocalFont(fontPath: string): Promise<ArrayBuffer> {
+  const filePath = path.resolve(process.cwd(), fontPath);
+  const buffer = fs.readFileSync(filePath);
+  return buffer.buffer.slice(
+    buffer.byteOffset,
+    buffer.byteOffset + buffer.byteLength
   );
-
-  if (!resource) {
-    throw new Error(`Failed to extract font URL from CSS for font: ${font}`);
-  }
-
-  const res = await fetch(resource[1]);
-
-  if (!res.ok) {
-    throw new Error(
-      `Failed to download font file from ${resource[1]}. Status: ${res.status}`
-    );
-  }
-
-  return res.arrayBuffer();
 }
 
-async function loadGoogleFonts(
-  text: string
-): Promise<
+async function loadGoogleFonts(): Promise<
   Array<{ name: string; data: ArrayBuffer; weight: number; style: string }>
 > {
-  const fontsConfig = [
+  const fonts = [
     {
-      name: "Cormorant Garamond",
-      font: "Cormorant+Garamond",
+      name: "Anthropic Serif",
+      data: await loadLocalFont(
+        "src/assets/fonts/WOFF2/Anthropic_Serif_Italics.woff2"
+      ),
       weight: 700,
       style: "italic",
-      italic: true,
     },
     {
-      name: "Inter",
-      font: "Inter",
+      name: "Anthropic Sans",
+      data: await loadLocalFont(
+        "src/assets/fonts/WOFF2/Anthropic_Sans_Serif_Normal.woff2"
+      ),
       weight: 400,
       style: "normal",
-      italic: false,
     },
   ];
-
-  const fonts = await Promise.all(
-    fontsConfig.map(async ({ name, font, weight, style, italic }) => {
-      const data = await loadGoogleFont(font, text, weight, italic);
-      return { name, data, weight, style };
-    })
-  );
 
   return fonts;
 }

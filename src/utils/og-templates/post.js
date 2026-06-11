@@ -157,9 +157,8 @@ export default async post => {
                       props: {
                         style: {
                           fontSize: 72,
-                          fontWeight: 700,
-                          fontFamily: "Cormorant Garamond",
-                          fontStyle: "italic",
+                          fontWeight: 400,
+                          fontFamily: "Anthropic Serif",
                           maxHeight: "84%",
                           overflow: "hidden",
                         },
@@ -175,7 +174,7 @@ export default async post => {
                           width: "100%",
                           marginBottom: "8px",
                           fontSize: 28,
-                          fontFamily: "Inter",
+                          fontFamily: "Anthropic Sans",
                         },
                         children: [
                           {

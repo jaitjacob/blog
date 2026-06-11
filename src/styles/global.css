@@ -1,6 +1,39 @@
 @import "tailwindcss";
 @import "./typography.css";
 
+@font-face {
+  font-family: "Anthropic Sans";
+  src: url("../assets/fonts/WOFF2/Anthropic_Sans_Serif_Normal.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Anthropic Serif";
+  src: url("../assets/fonts/WOFF2/Anthropic_Serif_Normal.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Anthropic Serif";
+  src: url("../assets/fonts/WOFF2/Anthropic_Serif_Italics.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Anthropic Monospace";
+  src: url("../assets/fonts/WOFF2/Anthropic_Monospace.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root,
@@ -10,8 +43,9 @@ html[data-theme="light"] {
   --accent: #006cac;
   --muted: #e6e6e6;
   --border: #ece9e9;
-  --font-inter: "Inter", sans-serif;
-  --font-cormorant-garamond: "Cormorant Garamond", serif;
+  --font-app: "Anthropic Sans", sans-serif;
+  --font-appheading: "Anthropic Serif", serif;
+  --font-appmono: "Anthropic Monospace", monospace;
 }
 
 html[data-theme="dark"] {
@@ -20,13 +54,15 @@ html[data-theme="dark"] {
   --accent: #23b0ff;
   --muted: #343f60;
   --border: #23b0ff80;
-  --font-inter: "Inter", sans-serif;
-  --font-cormorant-garamond: "Cormorant Garamond", serif;
+  --font-app: "Anthropic Sans", sans-serif;
+  --font-appheading: "Anthropic Serif", serif;
+  --font-appmono: "Anthropic Monospace", monospace;
 }
 
 @theme inline {
-  --font-app: var(--font-inter);
-  --font-appheading: var(--font-cormorant-garamond);
+  --font-app: var(--font-app);
+  --font-appheading: var(--font-appheading);
+  --font-appmono: var(--font-appmono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
@@ -48,10 +84,14 @@ html[data-theme="dark"] {
   h3,
   h4,
   th {
-    @apply font-appheading italic font-bold text-[42px] leading-tight;
+    @apply font-appheading text-[42px] leading-tight;
   }
   body {
-    @apply flex min-h-svh flex-col bg-background font-app text-foreground selection:bg-accent/75 selection:text-background;
+    @apply flex min-h-svh flex-col bg-background font-app font-normal text-foreground selection:bg-accent/75 selection:text-background;
+  }
+  pre,
+  code {
+    @apply font-appmono;
   }
   a,
   button {

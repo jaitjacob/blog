@@ -80,9 +80,8 @@ export default async () => {
                             props: {
                               style: {
                                 fontSize: 72,
-                                fontWeight: 700,
-                                fontFamily: "Cormorant Garamond",
-                                fontStyle: "italic",
+                                fontWeight: 400,
+                                fontFamily: "Anthropic Serif",
                               },
                               children: SITE.title,
                             },
@@ -90,7 +89,7 @@ export default async () => {
                           {
                             type: "p",
                             props: {
-                              style: { fontSize: 28, fontFamily: "Inter" },
+                              style: { fontSize: 28, fontFamily: "Anthropic Sans" },
                               children: SITE.desc,
                             },
                           },
@@ -106,7 +105,7 @@ export default async () => {
                           width: "100%",
                           marginBottom: "8px",
                           fontSize: 28,
-                          fontFamily: "Inter",
+                          fontFamily: "Anthropic Sans",
                         },
                         children: {
                           type: "span",
